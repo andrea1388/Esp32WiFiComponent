@@ -1,8 +1,9 @@
 # Esp32WiFiComponent
-A component written in C++ for handling wifi
+## A component written in C++ for handling wifi
 
 Minimal usage
 
+```
 #include "wifi.hpp"
 
 static const char *TAG = "main";
@@ -41,3 +42,4 @@ extern "C" {
     }
 
 }
+```
