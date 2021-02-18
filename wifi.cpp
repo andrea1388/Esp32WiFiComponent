@@ -16,12 +16,19 @@ void WiFi::AddNetwork(const char* _ssid,const char* _password)
 void WiFi::event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, void* event_data)
 {
     WiFi *obj=(WiFi*)arg;
-    if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START) {
-        else obj->Connect();
-    } else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED) {
+    if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START) 
+    {
+        // call event handler if set or connect
         if (obj->onEvent!=NULL) (*obj->onEvent)(obj,WIFI_DISCONNECT);
         else obj->Connect();
-    } else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP) {
+    } 
+    else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED) 
+    {
+        if (obj->onEvent!=NULL) (*obj->onEvent)(obj,WIFI_DISCONNECT);
+        else obj->Connect();
+    } 
+    else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP) 
+    {
         if (obj->onEvent!=NULL) (*obj->onEvent)(obj,WIFI_GOT_IP);
     }
 }
