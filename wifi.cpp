@@ -19,7 +19,7 @@ void WiFi::event_handler(void* arg, esp_event_base_t event_base, int32_t event_i
     if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START) 
     {
         // call event handler if set or connect
-        if (obj->onEvent!=NULL) (*obj->onEvent)(obj,WIFI_START);
+        if (obj->onEvent!=NULL) (*obj->onEvent)(obj,WIFI_DISCONNECT);
         else obj->Connect();
     } 
     else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED) 
