@@ -63,7 +63,7 @@ void WiFi::Start(const char* _ssid,const char* _password)
     strcpy((char*)wifi_config.sta.password,password[0].c_str());
     
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA) );
-    ESP_ERROR_CHECK(esp_wifi_set_config(ESP_IF_WIFI_STA, &wifi_config) );
+    ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_config) );
     ESP_ERROR_CHECK(esp_wifi_start() );
 
 }
